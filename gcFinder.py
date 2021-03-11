@@ -27,10 +27,10 @@ def finder():
         element_text = requests.get(url).text
         urlsoup = BeautifulSoup(element_text, 'html.parser')
         availability = urlsoup.find('div', attrs={'class': 'product-inventory'})
-# sends message to telegram chat if item in stock
+# sends message to telegram chat if the item in stock
         if availability.text.strip() != 'OUT OF STOCK.':
             telegram_sendmsg(url)
-# goes to sleep to 2 mins and runs again
+# goes to sleep for 2 mins and runs again
     time.sleep(120)
     finder()
 finder()
